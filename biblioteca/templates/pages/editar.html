@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="{% static 'js/jquery.mask.js' %}"></script>
+    <script defer src="{% static 'js/jquery.mask.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/editar.css' %}" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <title>Document</title>
+    <style>
+      #img {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Editar Livro</h1>
+
+    <form method="POST" enctype="multipart/form-data" action="">
+      {% csrf_token %}
+      <input
+        name="nome"
+        value="{{livro.nome}}"
+        type="text"
+        placeholder="Nome"
+      />
+      <input
+        name="autor"
+        value="{{livro.autor}}"
+        type="text"
+        placeholder="Autor"
+      />
+      <input
+        name="editora"
+        value="{{livro.editora}}"
+        type="text"
+        placeholder="Editora"
+      />
+      <input name="ano" value="{{livro.ano}}" type="number" placeholder="Ano" />
+      <textarea name="descricao" placeholder="Descrição">
+      {{livro.descricao}}
+      </textarea>
+      <input
+        name="ativo"
+        type="checkbox"
+        {% if livro.ativo %}checked{% endif %}/>
+      {% if livro.imagem %}
+      <label for="img">Imagem</label>
+      <img id="img" src="{{livro.imagem.url}}" alt="Imagem do livro" />
+      <input id="img" name="imagem" type="file" accept="image/*" />
+      {% else %}
+      <label for="img">Imagem</label>
+      <img id="img" src="" alt="Imagem do livro" />
+      <input id="select-img" name="imagem" type="file" accept="image/*" />
+      {% endif %}
+
+          <img
+            id="img"
+            src="https://www.ferramentastenace.com.br/wp-content/uploads/2017/11/sem-foto.jpg"
+            alt=""
+          />
+      </label>
+      <input id="select-img" name="imagem" type="file" />
+
+      <button type="submit">Editar</button>
+    </form>
+
+    <script>
+      let img = document.getElementById("img");
+      let img_input = document.getElementById("select-img");
+
+      img_input.addEventListener("change", function () {
+        img.src = window.URL.createObjectURL(this.files[0]);
+      });
+    </script>
+  </body>
+</html>

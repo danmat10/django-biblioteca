@@ -1,0 +1,57 @@
+/* Estilos para o formulário */
+.form-input {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Estilos para os inputs */
+.form-input input[type="text"],
+.form-input input[type="date"],
+.form-input input[type="file"],
+.form-input input[type="number"],
+textarea {
+  display: block;
+  width: 95%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+/* Estilos para o botão de envio */
+.form-input button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Estilos para a seção de adicionar imagem */
+.form-input .add-image {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-input .add-image label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 200px;
+  margin-top: 20px;
+}

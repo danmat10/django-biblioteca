@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes</title>
+    <link rel="stylesheet" href="{% static 'css/detalhes.css' %}" />
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <div class="profile">
+          {% if livro.imagem %}
+          <img src="{{ livro.imagem.url }}" alt="Imagem do livro" />
+          {% else %}
+          <img
+            src="https://www.ferramentastenace.com.br/wp-content/uploads/2017/11/sem-foto.jpg"
+            alt="Imagem não disponível"
+          />
+          {% endif %}
+        </div>
+        <div class="info">
+          <p><span>Nome:</span> {{livro.nome}}</p>
+          <p><span>Autor:</span> {{livro.autor}}</p>
+          <p><span>Editora:</span> {{livro.editora}}</p>
+          <p><span>Ano:</span> {{livro.ano}}</p>
+          <p><span>Descrição:</span> {{livro.descricao}}</p>
+        </div>
+        <div class="btn">
+          <a href="{% url 'deletar' livro.id %}">Apagar</a>
+          <a href="{% url 'editar' livro.id %}">Editar</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
