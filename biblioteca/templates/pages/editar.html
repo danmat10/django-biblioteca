@@ -13,14 +13,9 @@
       integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    ></script>
-
+    >
+  </script>
     <title>Document</title>
-    <style>
-      #img {
-        display: none;
-      }
-    </style>
   </head>
   <body>
     <h1>Editar Livro</h1>
@@ -54,28 +49,23 @@
         type="checkbox"
         {% if livro.ativo %}checked{% endif %}/>
       {% if livro.imagem %}
-      <label for="img">Imagem</label>
-      <img id="img" src="{{livro.imagem.url}}" alt="Imagem do livro" />
-      <input id="img" name="imagem" type="file" accept="image/*" />
+      <label for="select-img">
+        <img
+        id="img"
+        src="{{livro.imagem.url}}"
+        alt="Imagem do livro"/>
+      </label>
+      <input id="select-img" name="imagem" type="file" required />
       {% else %}
       <label for="img">Imagem</label>
       <img id="img" src="" alt="Imagem do livro" />
       <input id="select-img" name="imagem" type="file" accept="image/*" />
       {% endif %}
-
-          <img
-            id="img"
-            src="https://www.ferramentastenace.com.br/wp-content/uploads/2017/11/sem-foto.jpg"
-            alt=""
-          />
-      </label>
-      <input id="select-img" name="imagem" type="file" />
-
       <button type="submit">Editar</button>
     </form>
 
     <script>
-      let img = document.getElementById("img");
+      let img = document.querySelector("#img");
       let img_input = document.getElementById("select-img");
 
       img_input.addEventListener("change", function () {

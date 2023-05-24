@@ -25,11 +25,11 @@
       action=""
     >
       {% csrf_token %}
-      <input name="nome" type="text" placeholder="Nome" />
-      <input name="autor" type="text" placeholder="Autor" />
-      <input name="editora" type="text" placeholder="Editora" />
-      <input name="ano" type="number" placeholder="Ano" />
-      <textarea name="descricao" placeholder="Descrição"></textarea>
+      <input name="nome" type="text" placeholder="Nome" required />
+      <input name="autor" type="text" placeholder="Autor" required />
+      <input name="editora" type="text" placeholder="Editora" required />
+      <input name="ano" type="number" placeholder="Ano" required />
+      <textarea name="descricao" placeholder="Descrição" required></textarea>
       <div class="add-image">
         <label for="select-img">
           <img
@@ -39,7 +39,7 @@
           />
         </label>
       </div>
-      <input id="select-img" name="imagem" type="file" />
+      <input id="select-img" name="imagem" type="file" required />
 
       <button type="submit">Adicionar</button>
     </form>

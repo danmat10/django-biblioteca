@@ -59,11 +59,13 @@
       </tbody>
     </table>
     <div class="pagination">
-      <a href="#">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
+      {% for page_number in livros.paginator.page_range %}
+        {% if page_number == livros.number %}
+          <a class="active" href="{{ request.path }}?page={{ page_number }}">{{ page_number }}</a>
+        {% else %}
+          <a href="{{ request.path }}?page={{ page_number }}">{{ page_number }}</a>
+        {% endif %}
+      {% endfor %}
     </div>
   </body>
 </html>

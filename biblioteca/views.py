@@ -1,19 +1,36 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from . models import Livros
 from django.contrib.auth.decorators import login_required
 
 
 @login_required(redirect_field_name='login')
-def index(request):
-    livros = Livros.objects.all().order_by('-id')
-    return render(request, 'pages/index.html', {'livros': livros})
+def index(request, page_number=1):
+    livros = Livros.objects.all().order_by('id')
+    items_per_page = 10
+    livros_paginator = Paginator(livros, items_per_page)
+    livros_page = livros_paginator.get_page(page_number)
+    context = {
+        'livros': livros_page,
+        'current_page': page_number,
+        'total_pages': livros_paginator.num_pages
+    }
+    return render(request, 'pages/index.html', context)
 
 
 @login_required(redirect_field_name='login')
-def search(request):
+def search(request, page_number=1):
     q = request.GET.get('search')
-    livros = Livros.objects.filter(nome__icontains=q)
-    return render(request, 'pages/index.html', {'livros': livros})
+    livros = Livros.objects.filter(nome__icontains=q).order_by('id')
+    items_per_page = 10
+    livros_paginator = Paginator(livros, items_per_page)
+    livros_page = livros_paginator.get_page(page_number)
+    context = {
+        'livros': livros_page,
+        'current_page': page_number,
+        'total_pages': livros_paginator.num_pages
+    }
+    return render(request, 'pages/index.html', context)
 
 
 @login_required(redirect_field_name='login')
